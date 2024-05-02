@@ -84,15 +84,21 @@ function createSongDiv(song, index) {
   rowDiv.classList.add("row", "align-items-center");
 
   const imgDiv = document.createElement("div");
-  imgDiv.classList.add("col-md-2", "text-center", "mb-3", "mb-md-0");
-  const img = document.createElement("img");
-  img.src =
-    "https://raw.githubusercontent.com/DanielLazaro1555/Musica1/main/public/" +
-    song.imagen;
-  img.width = 50;
-  img.height = 50;
-  imgDiv.appendChild(img);
-  rowDiv.appendChild(imgDiv);
+imgDiv.classList.add("col-md-2", "text-center", "mb-3", "mb-md-0");
+
+const img = document.createElement("img");
+img.src =
+  "https://raw.githubusercontent.com/DanielLazaro1555/Musica1/main/public/" +
+  song.imagen;
+img.width = 50;
+img.height = 50;
+
+// Aplicar estilos CSS para redondear las esquinas de la imagen
+img.style.borderRadius = "10px"; // Puedes ajustar el valor para cambiar la cantidad de redondeo
+
+imgDiv.appendChild(img);
+rowDiv.appendChild(imgDiv);
+
 
   const titleDiv = document.createElement("div");
   titleDiv.classList.add("col-sm-3", "text-truncate");
