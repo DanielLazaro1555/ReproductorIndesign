@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "SF Pro Text Semibold"; /* Nombre de la fuente */
+  src: url("SF-Pro-Text-Semibold.otf") format("otf"),
+    /* Ruta y formato de archivo para la fuente semibold */
+      url("SF-Pro-Text-Semibold.otf") format("otf"); /* Ruta y formato de archivo alternativo para la fuente semibold */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Text Light"; /* Nombre de la fuente */
+  src: url("SF-Pro-Text-Light.otf") format("otf"),
+    /* Ruta y formato de archivo para la fuente light */
+      url("SF-Pro-Text-Light.otf") format("otf"); /* Ruta y formato de archivo alternativo para la fuente light */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.custom-bg {
+  background-color: rgba(216, 216, 216, 0.452);
+}
+
+.progress-bar {
+  background-color: black;
+  width: 100%; /* Asegura que la barra de progreso ocupe todo el ancho del contenedor */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  flex: 0.4;
+  text-align: center;
+  font-family: "SF Pro Text light", sans-serif; /* Aplica la fuente personalizada */
+  font-size: 0.9em; /* Ajusta el tamaño de la fuente según necesites */
+}
+
+.progress-container {
+  flex-grow: 2;
+  margin: 0 10px;
+  width: 100%; /* Asegura que la barra de progreso ocupe todo el ancho disponible */
+}
+
+body {
+  /* Estilo base */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.blur-bg {
+  /* Estilo para el fondo desenfocado */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(30px);
+  /* Ajusta el valor del desenfoque según necesites */
+}
+
+.music-title {
+  font-weight: bold;
+  font-family: "SF Pro Text Semibold", sans-serif; /* Aplica la fuente personalizada */
+  font-weight: bold; /* Asegúrate de ajustar el peso de la fuente según sea necesario */
+  text-align: center; /* Centra el contenido */
+  justify-content: center; /* Centra el contenido */
+}
+
+.artist-name {
+  font-family: "SF Pro Text Light", sans-serif; /* Aplica la fuente personalizada */
+}
+
+/* Estilo para el contenedor principal */
+.content-container {
+  position: relative;
+  /* Asegurar que los elementos hijos se posicionen relativos a este contenedor */
+  z-index: 1;
+  /* Colocar este contenedor por encima del fondo */
+}
+
+/* Estilo para el botón */
+.btn-next-song {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  outline: none;
+  z-index: 2;
+  /* Asegurar que el botón esté por encima del fondo */
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+}
