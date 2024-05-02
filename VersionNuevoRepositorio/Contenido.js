@@ -1,16 +1,18 @@
-let musicList;
-let currentSongIndex = 0; // Inicialmente se establece en 0
+// Declaración de variables
+let musicList; // Lista de canciones
+let currentSongIndex = 0; // Índice de la canción actual. Inicialmente se establece en 0
 
 // Función para actualizar el índice de la canción actual
 function updateCurrentSongIndex(selectedSongIndex) {
-  currentSongIndex = selectedSongIndex;
-  console.log("Índice de la canción actual actualizado:", currentSongIndex);
+  currentSongIndex = selectedSongIndex; // Actualizar el índice de la canción actual
+  console.log("Índice de la canción actual actualizado:", currentSongIndex); // Imprimir el índice de la canción actual en la consola
   localStorage.setItem("currentSongIndex", currentSongIndex); // Almacenar el nuevo índice en el almacenamiento local
 }
 
 // Definir listaCanciones fuera del evento DOMContentLoaded para que esté disponible en todo el script
 const listaCanciones = document.getElementById("lista-canciones");
 
+// Evento que se dispara cuando el DOM ha sido completamente cargado
 document.addEventListener("DOMContentLoaded", async function () {
   await loadMusicList(); // Cargar la lista de música al cargar la página
   const storedIndex = localStorage.getItem("currentSongIndex"); // Obtener el índice de la canción almacenado en el almacenamiento local
@@ -19,11 +21,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log(
       "Índice de la canción actual actualizado por almacenamiento local:",
       currentSongIndex
-    );
+    ); // Imprimir el índice de la canción actual actualizado por el almacenamiento local en la consola
   }
 });
-
+// Función asincrónica para cargar la lista de música
 async function loadMusicList() {
+  // URLs adicionales de donde cargar la lista de música
   const additionalURLs = [
     "https://raw.githubusercontent.com/DanielLazaro1555/Musica1/main/public/bd0.json",
   ];
@@ -32,8 +35,11 @@ async function loadMusicList() {
   musicList = [];
 
   try {
+    // Iterar sobre cada URL adicional
     for (const url of additionalURLs) {
+      // Realizar una solicitud para obtener los datos de la lista de música
       const response = await fetch(url);
+      // Convertir la respuesta a formato JSON
       const additionalMusicList = await response.json();
 
       // Filtrar las canciones duplicadas basándose en una combinación única de título y álbum
@@ -45,8 +51,10 @@ async function loadMusicList() {
         );
       });
 
+      // Concatenar las nuevas canciones filtradas a la lista de música
       musicList = musicList.concat(filteredAdditionalMusicList);
 
+      // Si existe el elemento "listaCanciones" en el DOM, agregar las nuevas canciones a la lista
       if (listaCanciones) {
         filteredAdditionalMusicList.forEach((song, index) => {
           const songDiv = createSongDiv(
@@ -58,30 +66,32 @@ async function loadMusicList() {
       }
     }
   } catch (error) {
-    console.error("Error al cargar el JSON adicional:", error);
+    console.error("Error al cargar el JSON adicional:", error); // Manejo de errores en caso de fallo al cargar el JSON adicional
   }
 }
-
 // Función para cargar la información de la canción actual
 function loadCurrentSong() {
   const currentSong = musicList[currentSongIndex];
   // Resto del código para cargar la canción actual
 }
 
+// Función para crear un elemento de lista de canciones (div) con la información de la canción
 function createSongDiv(song, index) {
   const divContainer = document.createElement("div");
-  divContainer.classList.add("list-group-item");
+  divContainer.classList.add("list-group-item", "mb-3", "border", "border"); // Agregar clase "border" y "border-danger" para un borde rojo
 
   const rowDiv = document.createElement("div");
   rowDiv.classList.add("row", "align-items-center");
 
   const imgDiv = document.createElement("div");
-  imgDiv.classList.add("col-sm-2", "text-center");
+  imgDiv.classList.add("col-md-2", "text-center", "mb-3", "mb-md-0");
   const img = document.createElement("img");
-  img.src = ``;
+  img.src =
+    "https://raw.githubusercontent.com/DanielLazaro1555/Musica1/main/public/" +
+    song.imagen;
   img.width = 50;
   img.height = 50;
-
+  imgDiv.appendChild(img);
   rowDiv.appendChild(imgDiv);
 
   const titleDiv = document.createElement("div");
